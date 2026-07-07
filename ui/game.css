@@ -1,0 +1,80 @@
+:root {
+    --panel: rgba(8, 18, 26, 0.86);
+    --panel-strong: rgba(10, 28, 32, 0.95);
+    --cyan: #87f7ff;
+    --green: #89ffb5;
+    --gold: #ffd76a;
+    --pink: #ff8fb3;
+    --text: #f5fff9;
+    --muted: #b9d2c8;
+}
+
+* { box-sizing: border-box; }
+html, body { width: 100%; min-height: 100%; margin: 0; }
+
+body {
+    color: var(--text);
+    font-family: Inter, ui-rounded, "Segoe UI", system-ui, sans-serif;
+    background: radial-gradient(circle at 18% 10%, rgba(137, 255, 181, 0.18), transparent 28%),
+        radial-gradient(circle at 82% 12%, rgba(135, 247, 255, 0.16), transparent 26%),
+        linear-gradient(180deg, #07071a 0%, #07110f 62%, #020503 100%);
+}
+
+#game {
+    display: grid;
+    grid-template-rows: auto minmax(420px, 1fr) auto;
+    gap: 14px;
+    width: min(1540px, 100vw);
+    min-height: 100vh;
+    padding: 14px;
+    margin: 0 auto;
+}
+
+#hud, #panel, #viewport {
+    border: 1px solid rgba(137, 255, 181, 0.3);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.36), inset 0 0 30px rgba(137, 255, 181, 0.05);
+}
+
+#hud {
+    display: grid;
+    grid-template-columns: auto minmax(280px, 1fr) auto;
+    gap: 16px;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 20px;
+    background: var(--panel-strong);
+}
+
+.brand { font-size: clamp(1.25rem, 2vw, 1.8rem); text-shadow: 0 0 18px rgba(137, 255, 181, 0.6); }
+#questBlock { display: grid; gap: 4px; justify-items: center; color: var(--gold); font-weight: 800; text-align: center; }
+#questProgress { color: var(--green); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.stats { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.stats span { min-width: 76px; padding: 9px 12px; font-weight: 900; text-align: center; border-radius: 999px; background: rgba(255, 255, 255, 0.08); }
+
+#viewport { position: relative; overflow: hidden; border-radius: 28px; background: #050812; }
+#gameCanvas { display: block; width: 100%; height: 100%; min-height: 560px; image-rendering: pixelated; }
+#toast, #startButton { position: absolute; left: 50%; transform: translateX(-50%); }
+#toast { top: 24px; padding: 10px 16px; color: var(--green); font-weight: 900; text-align: center; border: 1px solid rgba(137, 255, 181, 0.28); border-radius: 999px; background: rgba(2, 8, 8, 0.72); }
+#startButton, #dialogChoices button { color: #05100b; font: inherit; font-weight: 950; cursor: pointer; border: 0; border-radius: 999px; background: linear-gradient(135deg, var(--green), var(--cyan)); box-shadow: 0 0 28px rgba(137, 255, 181, 0.32); }
+#startButton { bottom: 28px; padding: 14px 24px; }
+#startButton.hidden { display: none; }
+
+#panel { display: grid; grid-template-columns: minmax(330px, 1.2fr) minmax(240px, 0.7fr) minmax(330px, 1fr); gap: 16px; padding: 16px; border-radius: 22px; background: var(--panel); }
+#dialog { display: flex; gap: 14px; align-items: center; }
+#portrait { display: grid; flex: 0 0 64px; width: 64px; height: 64px; place-items: center; font-size: 2.4rem; border-radius: 18px; background: rgba(255, 143, 179, 0.14); }
+#dialogText { margin: 0 0 10px; color: var(--muted); line-height: 1.45; }
+#dialogChoices { display: flex; flex-wrap: wrap; gap: 8px; }
+#dialogChoices button { padding: 8px 12px; font-size: 0.85rem; }
+h2 { margin: 0 0 8px; color: var(--cyan); font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; }
+#inventoryList { display: grid; gap: 8px; padding: 0; margin: 0; list-style: none; }
+#inventoryList li { padding: 8px 10px; border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 10px; background: rgba(255, 255, 255, 0.08); }
+.actions { margin-top: 10px; color: var(--gold); font-size: 0.85rem; }
+#mapArt { position: relative; margin: 0; color: var(--green); line-height: 1.18; text-shadow: 0 0 14px rgba(137, 255, 181, 0.5); animation: map-pulse 2.8s ease-in-out infinite; }
+
+@keyframes map-pulse { 50% { filter: brightness(1.25); transform: translateY(-1px); } }
+
+@media (max-width: 980px) {
+    #hud, #panel { grid-template-columns: 1fr; }
+    #questBlock, .stats { justify-self: start; }
+    #gameCanvas { min-height: 480px; }
+}
