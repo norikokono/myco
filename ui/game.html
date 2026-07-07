@@ -2,19 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Myco 2.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#050812">
+    <title>Myco 2.0 — Moonlit Forest Adventure</title>
     <link rel="stylesheet" href="game.css">
 </head>
 <body>
-    <div id="game">
+    <div id="game" class="game-shell">
+        <div class="ambient ambient-a"></div>
+        <div class="ambient ambient-b"></div>
+
         <header id="hud" aria-label="Game status">
-            <div class="brand">🍄 <strong>Myco 2.0</strong></div>
-            <div id="questBlock">
-                <span id="questTitle">Current Quest: Find the Elder Roots</span>
-                <span id="questProgress">□□□□□□□□□□ 0 / 10 Memories</span>
+            <div class="brand" aria-label="Myco 2.0">
+                <span class="brand-mark">🍄</span>
+                <span><strong>Myco</strong><small>Moonlit Forest</small></span>
             </div>
-            <div class="stats">
+
+            <section id="questBlock" aria-label="Current quest">
+                <div class="quest-row">
+                    <span id="questTitle">Find the Elder Roots</span>
+                    <span id="biomeLabel">Lantern Woods</span>
+                </div>
+                <div class="progress-track" aria-hidden="true"><span id="questBar"></span></div>
+                <span id="questProgress">0 / 10 Memories</span>
+            </section>
+
+            <div class="stats" aria-label="Player stats">
                 <span id="health">❤️❤️❤️</span>
                 <span id="memoryCount">🧠 0</span>
                 <span id="friendship">🤝 1</span>
@@ -23,41 +36,66 @@
 
         <main id="viewport" aria-label="Playable Myco 2.0 game">
             <canvas id="gameCanvas" width="1280" height="720"></canvas>
-            <div id="toast">Press Start, then walk with WASD or arrow keys.</div>
-            <button id="startButton" type="button">Start Game</button>
+            <div id="vignette" aria-hidden="true"></div>
+            <div id="toast" role="status">Press Start, then move with WASD / arrows. Press E near glowing objects.</div>
+
+            <section id="titleScreen" class="screen-card" aria-label="Start screen">
+                <p class="eyebrow">Cozy exploration prototype</p>
+                <h1>Myco 2.0</h1>
+                <p>Explore a moonlit forest, collect memory spores, unlock the Elder Gate, and let Myco guide you through the fog.</p>
+                <div class="button-row">
+                    <button id="startButton" type="button">Start Adventure</button>
+                    <button id="continueButton" type="button">Continue</button>
+                </div>
+                <p class="hint">WASD / arrows · E interact · M map · P pause · R restart</p>
+            </section>
+
+            <section id="pauseMenu" class="screen-card hidden" aria-label="Pause menu">
+                <p class="eyebrow">Paused</p>
+                <h2>Moon Pool Checkpoint</h2>
+                <p>Your progress autosaves in this browser. Continue when you are ready.</p>
+                <div class="button-row">
+                    <button id="resumeButton" type="button">Resume</button>
+                    <button id="restartButton" type="button">Restart Run</button>
+                </div>
+            </section>
+
+            <div id="touchControls" aria-label="Touch controls">
+                <button type="button" data-touch="ArrowUp">▲</button>
+                <div>
+                    <button type="button" data-touch="ArrowLeft">◀</button>
+                    <button type="button" data-touch="ArrowDown">▼</button>
+                    <button type="button" data-touch="ArrowRight">▶</button>
+                </div>
+                <button type="button" data-touch="KeyE" class="wide">Interact</button>
+            </div>
         </main>
 
         <section id="panel" aria-label="Companion, inventory, and map">
-            <div id="dialog">
-                <div id="portrait">🍄</div>
-                <div>
+            <article id="dialog" class="panel-card">
+                <div id="portrait" aria-hidden="true">🍄</div>
+                <div class="dialog-copy">
+                    <h2>Myco Companion</h2>
                     <p id="dialogText">I have seen this tree before...</p>
                     <div id="dialogChoices">
                         <button type="button" data-choice="Keep Walking">Keep Walking</button>
                         <button type="button" data-choice="Ask More">Ask More</button>
                         <button type="button" data-choice="Investigate">Investigate</button>
+                        <button type="button" data-choice="Ignore">Ignore</button>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <div id="inventory">
+            <article id="inventory" class="panel-card">
                 <h2>Inventory</h2>
                 <ul id="inventoryList" aria-label="Collected items"></ul>
-                <div class="actions">Craft · Use · Drop · Inspect</div>
-            </div>
+                <div class="actions"><button type="button">Craft</button><button type="button">Use</button><button type="button">Inspect</button></div>
+            </article>
 
-            <div id="worldMap">
+            <article id="worldMap" class="panel-card">
                 <h2>Animated World Map</h2>
-                <pre id="mapArt">                 ★ Impossible Bloom
-                        │
-              glowing roots
-                        │
-         Elder Root Caverns
-              ╱         ╲
- Lantern Woods      Crystal Hollow
-         │              │
-    Spore Marsh────Moon Pool</pre>
-            </div>
+                <canvas id="mapCanvas" width="360" height="210" aria-label="Forest route map"></canvas>
+            </article>
         </section>
     </div>
 

@@ -38,3 +38,13 @@ That mode runs `app.py`, embeds the same browser game, and shows the companion c
 ## Deploying Gradio
 
 For a Gradio deployment, use a Python-capable service such as Hugging Face Spaces. Set the Space SDK to **Gradio**, keep `app.py` at the repository root, and include `requirements.txt` so the host installs Gradio before launch.
+
+## Commercial-grade roadmap now in the prototype
+
+The static build is being shaped as a polished browser game rather than a plain Gradio demo. The current front end includes:
+
+- A full-screen title screen, continue button, pause menu, autosave, restart, and keyboard/touch controls.
+- A real canvas renderer with camera follow, animated water, moon pool shimmer, fog/spore particles, fireflies, player lantern lighting, collectible memory spores, Myco companion interactions, and an unlockable Elder Gate.
+- A production-style HUD with quest progress, biome label, health, memories, friendship, inventory actions, companion dialogue choices, and an animated route map.
+
+These features still run fully on GitHub Pages because they are implemented in browser HTML, CSS, and JavaScript. Use Gradio only when you want Python-hosted AI/model features.
