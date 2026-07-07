@@ -1,168 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Myco</title>
-
-<link rel="stylesheet" href="game.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myco 2.0</title>
+    <link rel="stylesheet" href="game.css">
 </head>
-
 <body>
+    <div id="game">
+        <header id="hud" aria-label="Game status">
+            <div class="brand">🍄 <strong>Myco 2.0</strong></div>
+            <div id="questBlock">
+                <span id="questTitle">Current Quest: Find the Elder Roots</span>
+                <span id="questProgress">□□□□□□□□□□ 0 / 10 Memories</span>
+            </div>
+            <div class="stats">
+                <span id="health">❤️❤️❤️</span>
+                <span id="memoryCount">🧠 0</span>
+                <span id="friendship">🤝 1</span>
+            </div>
+        </header>
 
-<div id="game">
+        <main id="viewport" aria-label="Playable Myco 2.0 game">
+            <canvas id="gameCanvas" width="1280" height="720"></canvas>
+            <div id="toast">Press Start, then walk with WASD or arrow keys.</div>
+            <button id="startButton" type="button">Start Game</button>
+        </main>
 
-    <!-- ========================= -->
-    <!-- TOP HUD -->
-    <!-- ========================= -->
-
-    <header id="hud">
-
-        <div class="hud-left">
-
-            <div class="logo">
-
-                🍄 Myco
-
+        <section id="panel" aria-label="Companion, inventory, and map">
+            <div id="dialog">
+                <div id="portrait">🍄</div>
+                <div>
+                    <p id="dialogText">I have seen this tree before...</p>
+                    <div id="dialogChoices">
+                        <button type="button" data-choice="Keep Walking">Keep Walking</button>
+                        <button type="button" data-choice="Ask More">Ask More</button>
+                        <button type="button" data-choice="Investigate">Investigate</button>
+                    </div>
+                </div>
             </div>
 
-        </div>
-
-        <div class="hud-center">
-
-            <div id="quest">
-
-                Find the Impossible Mushroom
-
+            <div id="inventory">
+                <h2>Inventory</h2>
+                <ul id="inventoryList" aria-label="Collected items"></ul>
+                <div class="actions">Craft · Use · Drop · Inspect</div>
             </div>
 
-        </div>
-
-        <div class="hud-right">
-
-            <div id="health">
-
-                ❤️❤️❤️
-
+            <div id="worldMap">
+                <h2>Animated World Map</h2>
+                <pre id="mapArt">                 ★ Impossible Bloom
+                        │
+              glowing roots
+                        │
+         Elder Root Caverns
+              ╱         ╲
+ Lantern Woods      Crystal Hollow
+         │              │
+    Spore Marsh────Moon Pool</pre>
             </div>
-
-            <div id="score">
-
-                ⭐ 0
-
-            </div>
-
-        </div>
-
-    </header>
-
-
-
-    <!-- ========================= -->
-    <!-- GAME AREA -->
-    <!-- ========================= -->
-
-    <main id="viewport">
-
-        <!-- camera -->
-
-        <div id="camera">
-
-            <!-- world -->
-
-            <div id="world">
-
-            </div>
-
-        </div>
-
-    </main>
-
-
-
-    <!-- ========================= -->
-    <!-- MYCO DIALOG -->
-    <!-- ========================= -->
-
-    <div id="dialog">
-
-        <div id="portrait">
-
-            🍄
-
-        </div>
-
-        <div id="dialogText">
-
-            Welcome to the forest...
-
-        </div>
-
+        </section>
     </div>
 
-
-
-    <!-- ========================= -->
-    <!-- INVENTORY -->
-    <!-- ========================= -->
-
-    <aside id="inventory">
-
-        <h2>
-
-            Inventory
-
-        </h2>
-
-        <ul id="inventoryList">
-
-        </ul>
-
-    </aside>
-
-
-
-    <!-- ========================= -->
-    <!-- WORLD MAP -->
-    <!-- ========================= -->
-
-    <div id="worldMap">
-
-        <h2>
-
-            Forest Map
-
-        </h2>
-
-        <div id="mapNodes">
-
-        </div>
-
-    </div>
-
-
-
-    <!-- ========================= -->
-    <!-- LOADING -->
-    <!-- ========================= -->
-
-    <div id="loading">
-
-        Loading Forest...
-
-    </div>
-
-</div>
-
-<script src="game.js"></script>
-
+    <script src="game.js"></script>
 </body>
-
 </html>
