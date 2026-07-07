@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myco</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <div id="game">
+        <header id="hud" aria-label="Game status">
+            <div class="brand">🍄 <strong>Myco</strong></div>
+            <div id="quest">Find 8 mooncaps, unlock the gate, and escape the forest.</div>
+            <div class="stats">
+                <span id="health">❤️❤️❤️</span>
+                <span id="score">⭐ 0/8</span>
+                <span id="keys">🗝️ 0</span>
+            </div>
+        </header>
+
+        <main id="viewport" aria-label="Playable Myco game">
+            <canvas id="gameCanvas" width="1280" height="720"></canvas>
+            <div id="toast">Press Start or Space to play</div>
+            <button id="startButton" type="button">Start Game</button>
+        </main>
+
+        <section id="panel" aria-label="Game controls and story">
+            <div id="dialog">
+                <div id="portrait">🍄</div>
+                <p id="dialogText">I need mooncaps to open the old root gate. Watch out for thorn slimes.</p>
+            </div>
+
+            <div id="controls">
+                <h2>Controls</h2>
+                <p><kbd>A</kbd>/<kbd>←</kbd> move left · <kbd>D</kbd>/<kbd>→</kbd> move right · <kbd>W</kbd>/<kbd>↑</kbd>/<kbd>Space</kbd> jump · <kbd>R</kbd> restart</p>
+            </div>
+
+            <div id="inventory">
+                <h2>Inventory</h2>
+                <ul id="inventoryList" aria-label="Collected items"></ul>
+            </div>
+        </section>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
